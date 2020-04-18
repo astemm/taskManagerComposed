@@ -35,7 +35,7 @@ import com.koblan.taskManager.security.UserDetailsImpl;
 
 
 
-//@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -57,10 +57,11 @@ public class AuthController {
 	        return new ResponseEntity<>(users, HttpStatus.OK);
 	    }
 	
-	 @GetMapping(value = "/users/{id}")
-	 public ResponseEntity<User> getTasksByUser(@PathVariable String id) throws NoSuchTaskException {
-	        User user = userRepository.findById(id).get();
-	        return new ResponseEntity<>(user, HttpStatus.OK);
+	 @GetMapping(value = "/users/user/{username}")
+	 public ResponseEntity<UserDTO> getUserByUserName(@PathVariable String username) {
+	        User user = userRepository.findByUsernameIgnoreCase(username);
+	        UserDTO userDto=new UserDTO(user);
+	        return new ResponseEntity<>(userDto, HttpStatus.OK);
 	    }
 	
 	@GetMapping(value = "/users/email/{email}")
