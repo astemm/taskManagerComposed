@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.koblan.taskManager.models.User;
 
 public class TaskDTO {
@@ -16,6 +17,7 @@ public class TaskDTO {
 	
 	private String description;
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date endDate;
 	
 	private String username;
