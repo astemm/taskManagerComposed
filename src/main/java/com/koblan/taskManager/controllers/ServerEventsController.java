@@ -25,31 +25,32 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/events")
 public class ServerEventsController implements ApplicationListener<MongoEvent> {
 	
+	int counter;
+	int counter2;
 	@Autowired
 	SharedTasksListener listener;
 	List<String> list=new ArrayList<String>();
 	String userId=new String();
-	//SharedTasksListener listener=new SharedTasksListener();
 
 	@GetMapping(path="/share",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-	private Mono<String> getUserId() {
-		//userId=new String();
+	private Flux<String> getUserId() {
 		Mono<String> event=Mono.just(userId);
 		Flux<String> events=Flux.fromIterable(list);
-		//events.subscribe(System.out::println);
-		return event;
+		return events;
 	}
 	
 	@GetMapping(path="/sse",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter getUserId2() 
     {
-          SseEmitter emitter = new SseEmitter();
+		  SseEmitter emitter = new SseEmitter();
           ExecutorService executor = Executors.newSingleThreadExecutor();
           executor.execute(() -> 
           {
                  try  {
                             randomDelay();
-                            emitter.send(userId);
+                            if (counter2<counter) {
+                            emitter.send(userId); counter2=counter;
+                            }
                       emitter.complete();
 
                 } catch (IOException e) {
@@ -70,10 +71,10 @@ public class ServerEventsController implements ApplicationListener<MongoEvent> {
 	
 	@Override
     public void onApplicationEvent(MongoEvent event) {
+		counter++;
 		list.add(event.getMessage());
 		userId=event.getMessage();
-        System.out.println("Received event - " + event.getMessage());
-        System.out.println("lsize "+list.size());
+      //  System.out.println("Received event - " + event.getMessage());
     }
 	
 	

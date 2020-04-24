@@ -29,8 +29,6 @@ public class Task {
 	
 	private User user;
 	
-//	private List<User> users_shared;
-	
 	public Task() {}
 	
 	public Task(String title, String description, Date endDate, User user) {
@@ -76,13 +74,6 @@ public class Task {
 		return endDate;
 	}
 	
-	public Date getDate() throws ParseException {
-		//SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		//Date date=df.parse(endDate.toString());
-		return endDate;
-	}
-	
-
 	public void setEndDate(Date endDate) {
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 		this.endDate = endDate;
@@ -95,20 +86,11 @@ public class Task {
 	public void setUser(User user) {
 		this.user = user;
 	}
-/*
-	public List<User> getUsers_shared() {
-		return users_shared;
-	}
 
-	public void setUsers_shared(List<User> users_shared) {
-		this.users_shared = users_shared;
-	}
-*/
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", title=" + title + ", description=" + description + ", endDate=" + endDate
 				+ ", user=" + user + "]";
 	}
 	
-
 }

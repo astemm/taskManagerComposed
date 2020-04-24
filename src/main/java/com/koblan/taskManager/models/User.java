@@ -24,8 +24,6 @@ public class User {
     private String password;
     
     private List<String> tasks;
-    
-//    private List<SharedTask> shared_tasks;
 
 	public User() {}
     
@@ -83,15 +81,7 @@ public class User {
 	public void setTasks(List<String> tasks) {
 		this.tasks = tasks;
 	}
-/*
-	public List<SharedTask> getShared_tasks() {
-		return shared_tasks;
-	}
 
-	public void setShared_tasks(List<SharedTask> shared_tasks) {
-		this.shared_tasks = shared_tasks;
-	}
-*/
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password="
