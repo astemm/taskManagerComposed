@@ -35,7 +35,7 @@ public class SharedTasksListener extends AbstractMongoEventListener<SharedTask> 
 	@Override
 	public void onAfterDelete(AfterDeleteEvent<SharedTask> event) {
 		Document sharedDoc=event.getDocument();
-		receivingUserId=sharedDoc.get("receivingUserId",String.class);
+	//	receivingUserId=sharedDoc.get("receivingUserId",String.class);
 	}
 
 }
