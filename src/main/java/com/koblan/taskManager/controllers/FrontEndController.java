@@ -12,7 +12,7 @@ public class FrontEndController {
 	
 	//utility method to correctly redirect login and logout angular actions to home 
 	//subpage when accessing as static angular resources inside spring boot app
-	@RequestMapping("/home")
+	@RequestMapping({"/home","/register"})
     public String home() {
         return "forward:/index.html";
     }
