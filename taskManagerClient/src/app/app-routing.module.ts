@@ -11,9 +11,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'task', component: TaskComponent},
-  { path: 'auth/users', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'api/tasks', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'shared/tasks', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

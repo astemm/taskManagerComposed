@@ -2,8 +2,10 @@ package com.koblan.taskManager.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 
 @Document(collection = "shared_tasks")
+@CompoundIndex(def = "{'sendingUserId':1, 'receivingUserId':1, 'task':1}", name = "compound_index2", unique=true)
 public class SharedTask {
 	
 	@Id

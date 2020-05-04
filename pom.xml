@@ -71,7 +71,7 @@
                         <outputDirectory>target/classes/static</outputDirectory>      
                              <resources>    
                                          <resource>       
-                                              <directory>taskManagerClient/dist</directory> 
+                                              <directory>src/main/resources/static</directory> 
                                           </resource>   
                              </resources>   
                         </configuration>        
