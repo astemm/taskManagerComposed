@@ -17,7 +17,7 @@ export class AuthService {
   private loginUrl = 'https://tasks-management-system-app.herokuapp.com/auth/login';
   private signupUrl = 'https://tasks-management-system-app.herokuapp.com/auth/signup';
   //private loginUrl = 'http://localhost:8080/auth/login';
-  //private signupUrl = 'http://localhost:8080/auth/signup';
+  ///private signupUrl = 'http://localhost:8080/auth/signup';
  
   constructor(private http: HttpClient) {
   }

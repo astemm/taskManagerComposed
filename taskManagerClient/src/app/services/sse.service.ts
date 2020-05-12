@@ -14,13 +14,13 @@ export class SseService {
           observer.next(event.data);
           console.log(event);
         });
-      };
+      }; 
       eventSource.onerror = error => {
         this._zone.run(() => {
-          observer.error(error);
+          //observer.error(error.timeStamp);
           console.log(error);
         });
-      };
+      }; 
     //  return () => eventSource.close();
     });
   }

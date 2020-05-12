@@ -16,7 +16,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class TaskComponent implements OnInit {
   num:number;
   user: User;
-  sse:string="";
+  sse:string;
   tasksList: Observable<TaskInfo[]>;
   newTask: Task;
   editedTask:Task;
@@ -34,29 +34,14 @@ export class TaskComponent implements OnInit {
     }
 
   ngOnInit() {
-   // this.sseService
-   //   .getServerSentEvent("http://localhost:8080/events/sse")
-   // .subscribe(data => { this.sse=data;},
-   //   error => this.createMessage=error);
+    this.sseService
+      .getServerSentEvent('https://tasks-management-system-app.herokuapp.com/events/sse')
+    .subscribe(data => {if(data==this.user.id) this.reloadData();
+      console.log(11+data); }); 
+   
     this.taskService.getUserByName(this.tokenStorageService.getUsername()).subscribe(user=>{this.user=user;
       this.reloadData();}
-      );
-    //this.source = new EventSource('http://localhost:8080/events/sse');
-    this.source = new EventSource('https://tasks-management-system-app.herokuapp.com/events/sse');
-    this.source.onmessage= event => {
-      this.zone.run(() => {
-      //  this.sse=event.data;
-        if(event.data==this.user.id) this.reloadData();
-        console.log(event);
-      });
-    };
-    this.source.onerror = error => {
-      this.zone.run(() => {
-      //  this.createMessage=error.type;
-        console.log(error);
-      });
-    };
-      
+      ); 
   }
 
   reloadData() {
